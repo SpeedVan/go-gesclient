@@ -1,8 +1,9 @@
 package internal
 
 import (
-	"github.com/jdextraze/go-gesclient/log"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/log"
 )
 
 type statistics struct {

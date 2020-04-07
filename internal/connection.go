@@ -4,13 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/common"
-	"github.com/jdextraze/go-gesclient/operations"
-	"github.com/jdextraze/go-gesclient/subscriptions"
-	"github.com/jdextraze/go-gesclient/tasks"
-	"github.com/satori/go.uuid"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/common"
+	"github.com/SpeedVan/go-gesclient/operations"
+	"github.com/SpeedVan/go-gesclient/subscriptions"
+	"github.com/SpeedVan/go-gesclient/tasks"
+	uuid "github.com/satori/go.uuid"
 )
 
 type connection struct {

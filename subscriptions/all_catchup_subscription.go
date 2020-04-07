@@ -2,9 +2,10 @@ package subscriptions
 
 import (
 	"errors"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/tasks"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/tasks"
 )
 
 type AllCatchUpSubscription struct {

@@ -1,8 +1,9 @@
 package client_test
 
 import (
-	"github.com/jdextraze/go-gesclient/client"
 	"testing"
+
+	"github.com/SpeedVan/go-gesclient/client"
 )
 
 func TestNewUserCredentials(t *testing.T) {

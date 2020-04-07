@@ -1,6 +1,6 @@
 package gesclient
 
-import "github.com/jdextraze/go-gesclient/log"
+import "github.com/SpeedVan/go-gesclient/log"
 
 func Debug() {
 	log.SetLevel(log.DEBUG)

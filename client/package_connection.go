@@ -5,8 +5,6 @@ import (
 	"crypto/tls"
 	"encoding/binary"
 	"errors"
-	"github.com/jdextraze/go-gesclient/log"
-	"github.com/satori/go.uuid"
 	"io"
 	"net"
 	"os"
@@ -15,6 +13,9 @@ import (
 	"strings"
 	"sync/atomic"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/log"
+	uuid "github.com/satori/go.uuid"
 )
 
 type PackageConnection struct {

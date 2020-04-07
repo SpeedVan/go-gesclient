@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/json"
 	"flag"
-	"github.com/jdextraze/go-gesclient"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/flags"
-	"github.com/satori/go.uuid"
 	"log"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient"
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/flags"
+	uuid "github.com/satori/go.uuid"
 )
 
 func main() {

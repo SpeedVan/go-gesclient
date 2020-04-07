@@ -2,10 +2,11 @@ package client_test
 
 import (
 	"bytes"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/guid"
-	"github.com/satori/go.uuid"
 	"testing"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/guid"
+	uuid "github.com/satori/go.uuid"
 )
 
 func expectToPanic(t *testing.T, fn func(), v interface{}) {
@@ -93,7 +94,7 @@ func TestNewTcpPackage(t *testing.T) {
 
 func TestTcpPacketFromBytes(t *testing.T) {
 	correlationId := uuid.Must(uuid.NewV4())
-	data := []byte{1,2,3}
+	data := []byte{1, 2, 3}
 	b := make([]byte, 21)
 	b[client.PackageCommandOffset] = byte(client.Command_BadRequest)
 	b[client.PackageFlagsOffset] = byte(client.FlagsNone)

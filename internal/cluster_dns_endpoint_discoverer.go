@@ -3,16 +3,17 @@ package internal
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/log"
-	"github.com/jdextraze/go-gesclient/messages"
-	"github.com/jdextraze/go-gesclient/tasks"
 	"io/ioutil"
 	"math/rand"
 	"net"
 	"net/http"
 	"sort"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/log"
+	"github.com/SpeedVan/go-gesclient/messages"
+	"github.com/SpeedVan/go-gesclient/tasks"
 )
 
 type ClusterDnsEndpointDiscoverer struct {

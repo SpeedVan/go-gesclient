@@ -3,15 +3,16 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/jdextraze/go-gesclient"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/projections"
 	"log"
 	"net"
 	"net/url"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient"
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/projections"
 )
 
 type Command struct {

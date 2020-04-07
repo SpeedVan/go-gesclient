@@ -1,10 +1,10 @@
 package subscriptions
 
 import (
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/messages"
+	"github.com/SpeedVan/go-gesclient/tasks"
 	"github.com/golang/protobuf/proto"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/messages"
-	"github.com/jdextraze/go-gesclient/tasks"
 )
 
 type VolatileSubscription struct {

@@ -2,7 +2,8 @@ package client
 
 import (
 	"fmt"
-	"github.com/jdextraze/go-gesclient/messages"
+
+	"github.com/SpeedVan/go-gesclient/messages"
 )
 
 type EventReadResult struct {

@@ -3,15 +3,16 @@ package operations
 import (
 	"errors"
 	"fmt"
-	"github.com/golang/protobuf/proto"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/log"
-	"github.com/jdextraze/go-gesclient/messages"
-	"github.com/jdextraze/go-gesclient/tasks"
-	"github.com/satori/go.uuid"
 	"net"
 	"reflect"
 	"sync/atomic"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/log"
+	"github.com/SpeedVan/go-gesclient/messages"
+	"github.com/SpeedVan/go-gesclient/tasks"
+	"github.com/golang/protobuf/proto"
+	uuid "github.com/satori/go.uuid"
 )
 
 type CreateRequestDtoHandler func() proto.Message

@@ -2,10 +2,11 @@ package internal
 
 import (
 	"fmt"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/satori/go.uuid"
 	"sync/atomic"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	uuid "github.com/satori/go.uuid"
 )
 
 var operationItemNextSeqNo int64 = -1

@@ -2,9 +2,10 @@ package tasks_test
 
 import (
 	"errors"
-	"github.com/jdextraze/go-gesclient/tasks"
 	"testing"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/tasks"
 )
 
 func TestNew(t *testing.T) {
@@ -65,7 +66,7 @@ func TestTask_ContinueWith(t *testing.T) {
 }
 
 func TestTask_Error(t *testing.T) {
-	if tasks.New(func () (interface{}, error) { return nil, errors.New(":(") }).Error().Error() != ":(" {
+	if tasks.New(func() (interface{}, error) { return nil, errors.New(":(") }).Error().Error() != ":(" {
 		t.Fail()
 	}
 }

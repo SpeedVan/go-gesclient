@@ -2,10 +2,11 @@ package client
 
 import (
 	"fmt"
-	"github.com/jdextraze/go-gesclient/guid"
-	"github.com/jdextraze/go-gesclient/messages"
-	"github.com/satori/go.uuid"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient/guid"
+	"github.com/SpeedVan/go-gesclient/messages"
+	uuid "github.com/satori/go.uuid"
 )
 
 type RecordedEvent struct {

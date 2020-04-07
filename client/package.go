@@ -3,8 +3,9 @@ package client
 import (
 	"errors"
 	"fmt"
-	"github.com/jdextraze/go-gesclient/guid"
-	"github.com/satori/go.uuid"
+
+	"github.com/SpeedVan/go-gesclient/guid"
+	uuid "github.com/satori/go.uuid"
 )
 
 const (

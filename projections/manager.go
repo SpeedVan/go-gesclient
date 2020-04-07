@@ -1,10 +1,11 @@
 package projections
 
 import (
-	cli "github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/tasks"
 	"net"
 	"time"
+
+	cli "github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/tasks"
 )
 
 type Manager struct {

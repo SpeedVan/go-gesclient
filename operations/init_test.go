@@ -1,10 +1,11 @@
 package operations_test
 
 import (
-	"github.com/jdextraze/go-gesclient"
-	"github.com/jdextraze/go-gesclient/client"
 	"net/url"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient"
+	"github.com/SpeedVan/go-gesclient/client"
 )
 
 var es client.Connection

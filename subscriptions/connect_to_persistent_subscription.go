@@ -2,12 +2,13 @@ package subscriptions
 
 import (
 	"errors"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/guid"
+	"github.com/SpeedVan/go-gesclient/messages"
+	"github.com/SpeedVan/go-gesclient/tasks"
 	"github.com/golang/protobuf/proto"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/guid"
-	"github.com/jdextraze/go-gesclient/messages"
-	"github.com/jdextraze/go-gesclient/tasks"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 type connectToPersistentSubscription struct {
@@ -38,6 +39,7 @@ func NewConnectToPersistentSubscription(
 	return obj
 }
 
+// bufferSize 就是在这里作为构建信息tcp包的
 func (s *connectToPersistentSubscription) createSubscriptionPackage() (*client.Package, error) {
 	bufferSize := int32(s.bufferSize)
 	dto := &messages.ConnectToPersistentSubscription{

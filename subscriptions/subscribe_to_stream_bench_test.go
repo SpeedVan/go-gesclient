@@ -1,13 +1,14 @@
 package subscriptions_test
 
 import (
-	"github.com/jdextraze/go-gesclient"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/tasks"
-	"github.com/satori/go.uuid"
 	"net/url"
 	"testing"
 	"time"
+
+	"github.com/SpeedVan/go-gesclient"
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/tasks"
+	uuid "github.com/satori/go.uuid"
 )
 
 var es client.Connection

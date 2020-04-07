@@ -2,10 +2,11 @@ package client_test
 
 import (
 	"bytes"
-	"github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/guid"
-	"github.com/satori/go.uuid"
 	"testing"
+
+	"github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/guid"
+	uuid "github.com/satori/go.uuid"
 )
 
 func TestNewEventData(t *testing.T) {

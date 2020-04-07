@@ -3,14 +3,15 @@ package projections
 import (
 	"encoding/json"
 	"fmt"
-	cli "github.com/jdextraze/go-gesclient/client"
-	"github.com/jdextraze/go-gesclient/tasks"
 	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
+
+	cli "github.com/SpeedVan/go-gesclient/client"
+	"github.com/SpeedVan/go-gesclient/tasks"
 )
 
 type client struct {
