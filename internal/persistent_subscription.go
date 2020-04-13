@@ -146,7 +146,47 @@ func (s *persistentSubscription) enqueue(evt *client.ResolvedEvent) {
 	s.queue <- evt
 }
 
+type RoutinePool struct {
+	size int32
+	num  int32
+	lock *sync.Mutex
+}
+
+func NewRoutinePool(size int32) *RoutinePool {
+	return &RoutinePool{
+		size: size,
+		num:  0,
+		lock: &sync.Mutex{},
+	}
+}
+
+func (s *RoutinePool) Go(f func(), reachSize func()) {
+	s.lock.Lock()
+	atomic.AddInt32(&s.num, 1)
+	if s.num <= s.size {
+		doneChan := make(chan string)
+		go func() {
+			select {
+			case <-doneChan: //拿到结果
+				atomic.AddInt32(&s.num, -1)
+			case <-time.After(30 * time.Second):
+				atomic.AddInt32(&s.num, -1)
+			}
+			defer close(doneChan)
+		}()
+		go func() {
+			f()
+			doneChan <- "done"
+		}()
+	} else {
+		reachSize()
+	}
+	s.lock.Unlock()
+}
+
 func (s *persistentSubscription) processQueue() {
+	pool := NewRoutinePool(10)
+
 	for e := range s.queue {
 		if e == dropSubscriptionEvent {
 			if s.dropData == nilDropReason {
@@ -162,21 +202,25 @@ func (s *persistentSubscription) processQueue() {
 			s.dropSubscription(s.dropData.reason, s.dropData.err)
 			return
 		}
-		err := s.eventAppeared(s, e)
-		if err == nil {
-			if s.autoAck {
-				err = s.subscription.NotifyEventsProcessed([]uuid.UUID{e.OriginalEvent().EventId()})
+		pool.Go(func() {
+			err := s.eventAppeared(s, e)
+			if err == nil {
+				if s.autoAck {
+					err = s.subscription.NotifyEventsProcessed([]uuid.UUID{e.OriginalEvent().EventId()})
+				}
+				if s.settings.VerboseLogging() {
+					log.Debugf("Persistent Subscription to %s: processed event (%s, %d, %s @ %d).",
+						s.streamId, e.OriginalEvent().EventStreamId(), e.OriginalEvent().EventNumber(),
+						e.OriginalEvent().EventType(), e.OriginalEventNumber())
+				}
 			}
-			if s.settings.VerboseLogging() {
-				log.Debugf("Persistent Subscription to %s: processed event (%s, %d, %s @ %d).",
-					s.streamId, e.OriginalEvent().EventStreamId(), e.OriginalEvent().EventNumber(),
-					e.OriginalEvent().EventType(), e.OriginalEventNumber())
+			if err != nil {
+				s.dropSubscription(client.SubscriptionDropReason_EventHandlerException, err)
+				return
 			}
-		}
-		if err != nil {
-			s.dropSubscription(client.SubscriptionDropReason_EventHandlerException, err)
-			return
-		}
+		}, func() {
+
+		})
 	}
 }
 

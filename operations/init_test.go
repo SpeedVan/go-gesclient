@@ -21,7 +21,7 @@ func ensureConnection() {
 
 	var err error
 
-	uri, _ := url.Parse("tcp://127.0.0.1:1113/")
+	uri, _ := url.Parse("tcp://faas:123456@10.121.117.207:1113/")
 	es, err = gesclient.Create(client.DefaultConnectionSettings, uri, "benchmark")
 	if err != nil {
 		panic(err)
