@@ -67,13 +67,16 @@ func subscriptionDropped(s client.PersistentSubscription, dr client.Subscription
 func Test2(t *testing.T) {
 	pool := NewRoutinePool(10)
 
-	for i := 0; i <= 10; i++ {
-
+	for i := 0; i <= 20; i++ {
+		if i > 10 {
+			time.Sleep(time.Second)
+		}
 		f := func(n int) func() {
 
 			return func() {
 				fmt.Println("[" + strconv.Itoa(n) + "]" + "start")
-				time.Sleep(10 * time.Second)
+				time.Sleep(5 * time.Second)
+				fmt.Println("[" + strconv.Itoa(n) + "]" + "end")
 			}
 		}(i)
 

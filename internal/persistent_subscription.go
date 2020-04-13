@@ -185,7 +185,7 @@ func (s *RoutinePool) Go(f func(), reachSize func()) {
 }
 
 func (s *persistentSubscription) processQueue() {
-	pool := NewRoutinePool(10)
+	pool := NewRoutinePool(int32(s.bufferSize))
 
 	for e := range s.queue {
 		if e == dropSubscriptionEvent {
