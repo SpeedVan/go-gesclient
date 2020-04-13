@@ -11,7 +11,7 @@ import (
 	"github.com/SpeedVan/go-gesclient/internal"
 )
 
-func New(name string, debug bool, endpoint string, sslHost string, sslSkipVerify bool, verbose bool) (*Client, error) {
+func New(name string, debug bool, endpoint string, sslHost string, sslSkipVerify bool, verbose bool) (client.Connection, error) {
 	if debug {
 		Debug()
 	}
