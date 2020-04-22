@@ -32,7 +32,7 @@ func Test(t *testing.T) {
 	cli.ErrorOccurred().Add(func(evt client.Event) error { log.Printf("Error: %+v", evt); return nil })
 	cli.AuthenticationFailed().Add(func(evt client.Event) error { log.Printf("Auth failed: %+v", evt); return nil })
 	task, err := cli.ConnectToPersistentSubscriptionAsync(
-		"params-015f6744abefd47b44132f1ee2092b30aeb3a474649deaeb1f3ad9c324aff823-2",
+		"params-015f6744abefd47b44132f1ee2092b30aeb3a474649deaeb1f3ad9c324aff823-3",
 		"Computer",
 		eventAppearedHandler,
 		subscriptionDropped,

@@ -160,7 +160,7 @@ func NewRoutinePool(size int32) *RoutinePool {
 	}
 }
 
-func (s *RoutinePool) Go(f func(), reachSize func()) {
+func (s *RoutinePool) Go(f func(), then func(), reachSize func()) {
 	s.lock.Lock()
 	atomic.AddInt32(&s.num, 1)
 	if s.num <= s.size {
@@ -176,6 +176,7 @@ func (s *RoutinePool) Go(f func(), reachSize func()) {
 		}()
 		go func() {
 			f()
+			then()
 			doneChan <- "done"
 		}()
 	} else {
@@ -203,21 +204,21 @@ func (s *persistentSubscription) processQueue() {
 			return
 		}
 		pool.Go(func() {
-			err := s.eventAppeared(s, e)
-			if err == nil {
-				if s.autoAck {
-					err = s.subscription.NotifyEventsProcessed([]uuid.UUID{e.OriginalEvent().EventId()})
-				}
-				if s.settings.VerboseLogging() {
-					log.Debugf("Persistent Subscription to %s: processed event (%s, %d, %s @ %d).",
-						s.streamId, e.OriginalEvent().EventStreamId(), e.OriginalEvent().EventNumber(),
-						e.OriginalEvent().EventType(), e.OriginalEventNumber())
+			if s.autoAck {
+				err := s.subscription.NotifyEventsProcessed([]uuid.UUID{e.OriginalEvent().EventId()})
+				if err != nil {
+					s.dropSubscription(client.SubscriptionDropReason_EventHandlerException, err)
+					return
 				}
 			}
-			if err != nil {
-				s.dropSubscription(client.SubscriptionDropReason_EventHandlerException, err)
-				return
+			if s.settings.VerboseLogging() {
+				log.Debugf("Persistent Subscription to %s: processed event (%s, %d, %s @ %d).",
+					s.streamId, e.OriginalEvent().EventStreamId(), e.OriginalEvent().EventNumber(),
+					e.OriginalEvent().EventType(), e.OriginalEventNumber())
 			}
+			s.eventAppeared(s, e)
+		}, func() {
+
 		}, func() {
 
 		})
